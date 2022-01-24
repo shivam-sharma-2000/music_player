@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer md;
     AudioManager audioManager;
     SeekBar actualSeekBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         videoView.start();*/
-        audioManager= (AudioManager) getSystemService(AUDIO_SERVICE);
-        md=MediaPlayer.create(this,R.raw.excuses);
-        SeekBar volumeBar =(SeekBar) findViewById(R.id.volumeSeekBar);
-         actualSeekBar =(SeekBar) findViewById(R.id.actualSeekBar);
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        md = MediaPlayer.create(this, R.raw.excuses);
+        SeekBar volumeBar = (SeekBar) findViewById(R.id.volumeSeekBar);
+        actualSeekBar = (SeekBar) findViewById(R.id.actualSeekBar);
         ImageView front = findViewById(R.id.front);
         ImageView back = findViewById(R.id.back);
-        Button play = (Button)findViewById(R.id.play);
-        Button pause = (Button)findViewById(R.id.pause);
+        Button play = (Button) findViewById(R.id.play);
+        Button pause = (Button) findViewById(R.id.pause);
 
         //animation
         front.animate().alpha(0).setDuration(2000);
@@ -58,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         volumeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Log.i("info",String.valueOf(i));
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,i,0);
+                Log.i("info", String.valueOf(i));
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, i, 0);
             }
 
             @Override
@@ -73,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         actualSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-               // md.seekTo(seekBar.getProgress());
+                // md.seekTo(seekBar.getProgress());
             }
 
             @Override
@@ -96,19 +96,14 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 actualSeekBar.setProgress(md.getCurrentPosition());
             }
-        },0,1000);
-
-
+        }, 0, 1000);
     }
-    public void playOnClick(View view)
-    {
-        Log.i("info",String.valueOf(view.getId()) );
-        if(md.isPlaying())
-        {
+
+    public void playOnClick(View view) {
+        Log.i("info", String.valueOf(view.getId()));
+        if (md.isPlaying()) {
             md.pause();
-        }
-        else
-        {
+        } else {
             md.start();
         }
 
@@ -132,8 +127,4 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
     }
-
-
-
-
 }
